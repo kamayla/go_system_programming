@@ -11,12 +11,13 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
+	defer oldFile.Close()
 
 	newFile, err := os.Create("./new.txt")
-
 	if err != nil {
 		log.Fatal(err)
 	}
+	defer newFile.Close()
 
 	// io.CopyはReaderからWriterにデータを書き込む
 	_, err = io.Copy(newFile, oldFile)
