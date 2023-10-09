@@ -33,5 +33,4 @@ func main() {
 	}
 
 	io.Copy(bWriter, strings.NewReader("fugafuga"))
-
 }
