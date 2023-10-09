@@ -11,6 +11,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Disposition", "attachment; filename=ascii_sample.zip")
 
 	file, err := os.Open("test.zip")
+
 	if err != nil {
 		panic(err)
 	}
