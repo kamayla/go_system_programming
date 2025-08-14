@@ -14,3 +14,11 @@ type User struct {
 	Age    int
 	Gender Gender
 }
+
+func (u *User) IsAdult() bool {
+	return u.Age >= 20
+}
+
+func (u *User) IsMale() bool {
+	return u.Gender == GenderMale
+}

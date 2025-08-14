@@ -8,10 +8,15 @@ import (
 
 type DrinkAlcoholService struct {
 	CanDrinkAlcoholSpecification spec.Specification
+	CanEatBreakfastSpecification spec.Specification
 }
 
 // 飲めるようなら飲む
 func (s DrinkAlcoholService) DrinkAlcohol(user domain.User, subscription domain.Subscription) {
+	if s.CanEatBreakfastSpecification.IsSatisfied() {
+		fmt.Println("User can eat breakfast🥐🥐🥐")
+	}
+
 	if s.CanDrinkAlcoholSpecification.IsSatisfied() {
 		fmt.Println("User can drink alcohol🍺🍺🍺")
 		return

@@ -8,9 +8,5 @@ type CanDrinkAlcoholSpecification struct {
 }
 
 func (s CanDrinkAlcoholSpecification) IsSatisfied() bool {
-	return Or(
-		UserAdultSpecification{User: s.User},
-		UserMaleSpecification{User: s.User},
-		SubscriptionPaidSpecification{Subscription: s.Subscription},
-	).IsSatisfied()
+	return s.User.IsAdult() && s.User.IsMale() && s.Subscription.IsPaid
 }
