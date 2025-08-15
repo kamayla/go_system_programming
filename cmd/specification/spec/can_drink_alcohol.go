@@ -11,5 +11,5 @@ func (s CanDrinkAlcoholSpecification) IsSatisfied() bool {
 	if s.User == nil || s.Subscription == nil {
 		return false
 	}
-	return s.User.IsAdult() && s.User.IsMale() && s.Subscription.IsPaid
+	return s.User.IsAdult() && s.User.IsMale() && s.Subscription.IsActive()
 }

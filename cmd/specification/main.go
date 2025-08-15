@@ -10,15 +10,15 @@ func main() {
 		ID:     1,
 		Name:   "John Doe",
 		Email:  "john.doe@example.com",
-		Age:    1,
+		Age:    50,
 		Gender: domain.GenderMale,
 	}
 
 	subscription := domain.Subscription{
 		ID:             1,
 		User:           user,
-		IsPaid:         true,
-		SubscribeMonth: 14,
+		Status:         domain.SubscriptionStatusActive,
+		SubscribeMonth: 6,
 	}
 
 	service := domainservice.DrinkAlcoholService{}
