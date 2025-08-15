@@ -1,26 +1,14 @@
 package main
 
 import (
-	"go_system_programming/cmd/specification/domain"
 	"go_system_programming/cmd/specification/domainservice"
+	"go_system_programming/cmd/specification/repository"
 )
 
 func main() {
-	user := domain.User{
-		ID:     1,
-		Name:   "John Doe",
-		Email:  "john.doe@example.com",
-		Age:    50,
-		Gender: domain.GenderMale,
+	service := domainservice.DrinkAlcoholService{
+		UserRepository:         repository.NewUserRepository(),
+		SubscriptionRepository: repository.NewSubscriptionRepository(),
 	}
-
-	subscription := domain.Subscription{
-		ID:             1,
-		User:           user,
-		Status:         domain.SubscriptionStatusActive,
-		SubscribeMonth: 6,
-	}
-
-	service := domainservice.DrinkAlcoholService{}
-	service.DrinkAlcohol(user, subscription)
+	service.DrinkAlcohol(1)
 }
