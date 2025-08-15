@@ -3,7 +3,6 @@ package main
 import (
 	"go_system_programming/cmd/specification/domain"
 	"go_system_programming/cmd/specification/domainservice"
-	"go_system_programming/cmd/specification/spec"
 )
 
 func main() {
@@ -11,7 +10,7 @@ func main() {
 		ID:     1,
 		Name:   "John Doe",
 		Email:  "john.doe@example.com",
-		Age:    20,
+		Age:    1,
 		Gender: domain.GenderMale,
 	}
 
@@ -19,18 +18,9 @@ func main() {
 		ID:             1,
 		User:           user,
 		IsPaid:         true,
-		SubscribeMonth: 12,
+		SubscribeMonth: 14,
 	}
 
-	service := domainservice.DrinkAlcoholService{
-		CanDrinkAlcoholSpecification: spec.CanDrinkAlcoholSpecification{
-			User:         &user,
-			Subscription: &subscription,
-		},
-		CanEatBreakfastSpecification: spec.CanEatBreakfastSpecification{
-			User:         &user,
-			Subscription: &subscription,
-		},
-	}
+	service := domainservice.DrinkAlcoholService{}
 	service.DrinkAlcohol(user, subscription)
 }

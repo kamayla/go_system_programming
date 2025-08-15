@@ -7,17 +7,21 @@ import (
 )
 
 type DrinkAlcoholService struct {
-	CanDrinkAlcoholSpecification spec.Specification
-	CanEatBreakfastSpecification spec.Specification
+	specFactory spec.SpecFacade
 }
 
 // 飲めるようなら飲む
 func (s DrinkAlcoholService) DrinkAlcohol(user domain.User, subscription domain.Subscription) {
-	if s.CanEatBreakfastSpecification.IsSatisfied() {
+
+	if s.specFactory.CanEatBreakfast(&user, &subscription) {
 		fmt.Println("User can eat breakfast🥐🥐🥐")
 	}
 
-	if s.CanDrinkAlcoholSpecification.IsSatisfied() {
+	if s.specFactory.Combination(&user, &subscription) {
+		fmt.Println("飲めるし食べれる🍺🥐🥐🥐")
+	}
+
+	if s.specFactory.CanDrinkAlcohol(&user, &subscription) {
 		fmt.Println("User can drink alcohol🍺🍺🍺")
 		return
 	}

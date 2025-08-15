@@ -12,5 +12,18 @@ func (s CanEatBreakfastSpecification) IsSatisfied() bool {
 	if s.User == nil || s.Subscription == nil {
 		return false
 	}
-	return !s.User.IsMale() && s.Subscription.IsLongTimeSubscribe()
+	return s.User.IsMale() && s.Subscription.IsLongTimeSubscribe()
+}
+
+type CombinationSpecification struct {
+	User         *domain.User
+	Subscription *domain.Subscription
+}
+
+func (s CombinationSpecification) IsSatisfied() bool {
+	// こういうのをあまりやらない方針
+	return And(
+		CanDrinkAlcoholSpecification(s),
+		CanEatBreakfastSpecification(s),
+	).IsSatisfied()
 }
